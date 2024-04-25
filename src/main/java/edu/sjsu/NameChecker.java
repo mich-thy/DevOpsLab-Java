@@ -13,16 +13,22 @@ public class NameChecker {
      */
     public static boolean check(String input) {
         // TODO: implement
-        Pattern regexPat = Pattern.compile("^[a-zA-Z][a-zA-Z-']{1,39}$");
-        Matcher stringInput = regexPat.matcher(input);
-        if(stringInput.find()){
-            if((input.matches("'.*'")) || (input.matches("--"))){
-                return true;
-            }else{
-                return false;
-            }
-        }else{
+        Pattern regexPat = Pattern.compile("^[a-zA-Z]+([-'][a-zA-Z]+)*$");
+        // Matcher stringInput = regexPat.matcher(input);
+        if(input == null || input.length() < 2 || input.length() > 40){
             return false;
         }
+        return regexPat.matcher(input).matches();
+
+
+        // if(stringInput.find()){
+        //     if((input.matches("'.*'")) || (input.matches("--"))){
+        //         return true;
+        //     }else{
+        //         return false;
+        //     }
+        // }else{
+        //     return false;
+        // }
     }
 }
